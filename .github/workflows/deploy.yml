@@ -1,0 +1,35 @@
+name: Deploy to Azure Web App
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  AZURE_WEBAPP_NAME: hospital-system-api
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+
+    - name: Build with dotnet
+      run: dotnet build --configuration Release
+
+    - name: Publish with dotnet
+      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/HealthAPI
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{env.AZURE_WEBAPP_NAME}}
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package: ${{env.DOTNET_ROOT}}/HealthAPI
+

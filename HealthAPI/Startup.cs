@@ -1,4 +1,5 @@
 ﻿using HealthAPI.Data;
+using HealthAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -25,8 +26,22 @@ namespace HealthAPI
         {
             services.AddDbContext<MyDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
+           
+            
+            services.AddScoped<IAppointmentService, AppointmentService>();
+            services.AddScoped<IDoctorsService, DoctorsService>();
+            services.AddScoped<IPatientService, PatientService>();
             services.AddControllers();
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins("*")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
 
             services.AddSwaggerGen(c =>
             {
@@ -45,6 +60,7 @@ namespace HealthAPI
             }
 
             app.UseHttpsRedirection();
+            app.UseCors();
 
             app.UseRouting();
 

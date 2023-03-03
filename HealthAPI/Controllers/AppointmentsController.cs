@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HealthAPI.Data;
+using HealthAPI.Services;
 
 namespace HealthAPI.Controllers
 {
@@ -13,42 +14,32 @@ namespace HealthAPI.Controllers
     [ApiController]
     public class AppointmentsController : ControllerBase
     {
-        private readonly MyDbContext _context;
+        private readonly IAppointmentService _appointmentService;
 
-        public AppointmentsController(MyDbContext context)
+        public AppointmentsController(IAppointmentService appointmentService)
         {
-            _context = context;
+            _appointmentService = appointmentService;
         }
-
-        
 
         // GET: api/AppointmentPlanner/Doctors/5/Appointments
         [HttpGet("Doctors/{id}/Appointments")]
         public async Task<ActionResult<IEnumerable<Appointment>>> GetDoctorAppointments(int id, DateTime startDate, DateTime endDate)
         {
-            var doctor = await _context.Doctors.FindAsync(id);
-            var patient = await _context.Patients.FindAsync(id);
+            var appointments = await _appointmentService.GetDoctorAppointmentsAsync(id, startDate, endDate);
 
-            if (doctor == null)
+            if (!appointments.Any())
             {
                 return NotFound();
             }
 
-            var appointments = await _context.Appointments
-                .Include(a => patient.Id)
-                .Where(a => a.DoctorId == id && a.StartTime >= startDate && a.EndTime <= endDate)
-                .ToListAsync();
-
             return appointments;
         }
-
 
         // POST: api/AppointmentPlanner/Appointments
         [HttpPost("Appointments")]
         public async Task<ActionResult<Appointment>> PostAppointment(Appointment appointment)
         {
-            _context.Appointments.Add(appointment);
-            await _context.SaveChangesAsync();
+            await _appointmentService.PostAppointmentAsync(appointment);
 
             return CreatedAtAction(nameof(GetAppointment), new { id = appointment.Id }, appointment);
         }
@@ -57,9 +48,7 @@ namespace HealthAPI.Controllers
         [HttpGet("Appointments/{id}")]
         public async Task<ActionResult<Appointment>> GetAppointment(int id)
         {
-           
-
-            var appointment = await _context.Appointments.FirstOrDefaultAsync(a => a.Id == id);
+            var appointment = await _appointmentService.GetAppointmentAsync(id);
 
             if (appointment == null)
             {
@@ -78,45 +67,28 @@ namespace HealthAPI.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(appointment).State = EntityState.Modified;
+            var success = await _appointmentService.PutAppointmentAsync(id, appointment);
 
-            try
+            if (!success)
             {
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!AppointmentExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+
             return NoContent();
         }
 
         // DELETE: api/AppointmentPlanner/Appointments/5
         [HttpDelete("Appointments/{id}")]
-        public async Task<IActionResult> DeleteAppointment(int id, Appointment appointment)
+        public async Task<IActionResult> DeleteAppointment(int id)
         {
-            if (id != appointment.Id)
+            var success = await _appointmentService.DeleteAppointmentAsync(id);
+
+            if (!success)
             {
-                return BadRequest();
+                return NotFound();
             }
-            _context.Appointments.Remove(appointment);
-            await _context.SaveChangesAsync();
 
             return NoContent();
         }
-
-
-        private bool AppointmentExists(int id)
-        {
-            return _context.Appointments.Any(e => e.Id == id);
-        }
     }
 }
-

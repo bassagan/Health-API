@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "urRPGcSmuQ5fBviIxCm/vZDqOnnq+mFuCujNG/yq3K4=",
+  "Source": "HealthAPI",
+  "BasePath": "_content/HealthAPI",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

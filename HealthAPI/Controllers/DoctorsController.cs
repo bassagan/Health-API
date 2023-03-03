@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using HealthAPI.Model;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using HealthAPI.Data;
+using HealthAPI.Model;
+using HealthAPI.Services;
 
 namespace HealthAPI.Controllers
 {
@@ -12,32 +10,33 @@ namespace HealthAPI.Controllers
     [ApiController]
     public class DoctorsController : ControllerBase
     {
-        private readonly MyDbContext _context;
+        private readonly IDoctorsService _doctorService;
 
-        public DoctorsController(MyDbContext context)
+        public DoctorsController(IDoctorsService doctorService)
         {
-            _context = context;
+            _doctorService = doctorService;
         }
 
         // GET: api/Doctors
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Doctor>>> GetDoctors()
         {
-            return await _context.Doctors.ToListAsync();
+            var doctors = await _doctorService.GetDoctorsAsync();
+            return Ok(doctors);
         }
 
         // GET: api/Doctors/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Doctor>> GetDoctor(int id)
         {
-            var doctor = await _context.Doctors.FindAsync(id);
+            var doctor = await _doctorService.GetDoctorByIdAsync(id);
 
             if (doctor == null)
             {
                 return NotFound();
             }
 
-            return doctor;
+            return Ok(doctor);
         }
 
         // PUT: api/Doctors/5
@@ -49,56 +48,37 @@ namespace HealthAPI.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(doctor).State = EntityState.Modified;
+            var updatedDoctor = await _doctorService.UpdateDoctorAsync(id, doctor);
 
-            try
+            if (updatedDoctor == null)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DoctorExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return NotFound();
             }
 
-            return NoContent();
+            return Ok(updatedDoctor);
         }
 
         // POST: api/Doctors
         [HttpPost]
         public async Task<ActionResult<Doctor>> PostDoctor(Doctor doctor)
         {
-            _context.Doctors.Add(doctor);
-            await _context.SaveChangesAsync();
+            var createdDoctor = await _doctorService.AddDoctorAsync(doctor);
 
-            return CreatedAtAction(nameof(GetDoctor), new { id = doctor.Id }, doctor);
+            return CreatedAtAction(nameof(GetDoctor), new { id = createdDoctor.Id }, createdDoctor);
         }
 
         // DELETE: api/Doctors/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDoctor(int id)
         {
-            var doctor = await _context.Doctors.FindAsync(id);
+            var doctor = await _doctorService.DeleteDoctorAsync(id);
+
             if (doctor == null)
             {
                 return NotFound();
             }
 
-            _context.Doctors.Remove(doctor);
-            await _context.SaveChangesAsync();
-
             return NoContent();
-        }
-
-        private bool DoctorExists(int id)
-        {
-            return _context.Doctors.Any(e => e.Id == id);
         }
     }
 }

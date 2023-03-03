@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Este archivo se usa en el proceso de publicación y empaquetado del proyecto web. Para personalizar el comportamiento de este proceso,
+edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 para obtener más información. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAj/53FYcgO0myfrfLkTYviQAAAAACAAAAAAADZgAAwAAAABAAAADg6ARb1kOVpeBG2rL5m3+uAAAAAASAAACgAAAAEAAAAD5lgGDOhPjerdLnpH+QrN6AAAAA5wnumiy2cMFWrgGgkIPCvFC8m+dSqPHovUjYEVP0XthMoBvKwG2zZ21u8K7Sy5uM7xlFeQHcLcJqBnprsdJtIoAkbJlTZ3l7CFIf04rK9CbQaae/z1Dz5C30RtqHmPskXrYWixVzVsRHGdjSQDIhWSEjn/MOmZ/7Whjrk1gLKD4UAAAAoSu+1ntRTuZWyKfAlfJ+IrgUluw=</EncryptedPassword>
+    <History>False|2023-03-02T15:35:04.1879175Z;True|2023-03-02T16:28:19.5380402+01:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <EFMigrations Include="HealthAPI.Data.MyDbContext">
+      <Value>Server=%28localdb%29\mssqllocaldb%3bDatabase=MyDatabase%3bTrusted_Connection=True%3bMultipleActiveResultSets=true</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

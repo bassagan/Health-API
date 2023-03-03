@@ -76,7 +76,7 @@ namespace HealthAPI.Services
             {
                 if (!AppointmentExists(id))
                 {
-                    throw new HealthException("You found a Bee!");
+                    throw new HealthException("Wakanda you found a Bee!");
                 }
                 else
                 {
@@ -139,7 +139,7 @@ namespace HealthAPI.Services
                 for (var t = startTime; t < endTime; t += slotDuration)
                 {
                     allTimeSlots.Add(t.TimeOfDay);
-                    throw new HealthException("You found a Flea!");
+                    throw new HealthException("Wakanda found a Flea!");
                 }
             }
 

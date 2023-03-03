@@ -52,7 +52,7 @@ namespace HealthAPI.Controllers
 
             if (updatedDoctor == null)
             {
-                return NotFound();
+                return StatusCode(StatusCodes.Status500InternalServerError, new { error = "Avengers you found a Fly!" });
             }
 
             return Ok(updatedDoctor);
@@ -62,7 +62,17 @@ namespace HealthAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Doctor>> PostDoctor(Doctor doctor)
         {
-            var createdDoctor = await _doctorService.AddDoctorAsync(doctor);
+            var createdDoctor = new Doctor();
+            try
+            {
+                createdDoctor = await _doctorService.AddDoctorAsync(doctor);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { error = "Avengers you found a Buterfly!" });
+
+            }
+
 
             return CreatedAtAction(nameof(GetDoctor), new { id = createdDoctor.Id }, createdDoctor);
         }

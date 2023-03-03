@@ -10,9 +10,9 @@ namespace HealthAPI.Controllers
     [ApiController]
     public class PatientsController : ControllerBase
     {
-        private readonly PatientService _patientService;
+        private readonly IPatientService _patientService;
 
-        public PatientsController(PatientService patientService)
+        public PatientsController(IPatientService patientService)
         {
             _patientService = patientService;
         }
@@ -69,7 +69,7 @@ namespace HealthAPI.Controllers
 
             if (patient == null)
             {
-                return NotFound();
+                return StatusCode(StatusCodes.Status500InternalServerError, new { error = "Avengers you found a Mosquito!" });
             }
 
             await _patientService.DeletePatientAsync(id);

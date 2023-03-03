@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LcNCgbOyxusf1aFtI758K1hquVBSv7IytvV1yG5ftb9QlEAHRQRc4ReoX+DBK2GMUhdHApPs51yojtNsH5cyfg==",
+  "dgSpecHash": "sh89uM95+hQk5wrzghfGmzTPgAkAWVKRSE7YDleVSzSoenM2Y2DL4Iy9ZSkILQ7yayMalo2XQAA5N5nXolTq9g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\bassagan\\source\\repos\\HealthAPI\\HealtAPI.Tests\\HealthAPI.Tests.csproj",
+  "projectFilePath": "C:\\Users\\bassagan\\source\\repos\\Health-API\\HealtAPI.Tests\\HealthAPI.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bassagan\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\bassagan\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

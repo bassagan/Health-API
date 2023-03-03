@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bassagan\\source\\repos\\HealthAPI\\HealthAPI\\HealthAPI.csproj": {}
+    "C:\\Users\\bassagan\\source\\repos\\Health-API\\HealthAPI\\HealthAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bassagan\\source\\repos\\HealthAPI\\HealthAPI\\HealthAPI.csproj": {
+    "C:\\Users\\bassagan\\source\\repos\\Health-API\\HealthAPI\\HealthAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bassagan\\source\\repos\\HealthAPI\\HealthAPI\\HealthAPI.csproj",
+        "projectUniqueName": "C:\\Users\\bassagan\\source\\repos\\Health-API\\HealthAPI\\HealthAPI.csproj",
         "projectName": "HealthAPI",
-        "projectPath": "C:\\Users\\bassagan\\source\\repos\\HealthAPI\\HealthAPI\\HealthAPI.csproj",
+        "projectPath": "C:\\Users\\bassagan\\source\\repos\\Health-API\\HealthAPI\\HealthAPI.csproj",
         "packagesPath": "C:\\Users\\bassagan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bassagan\\source\\repos\\HealthAPI\\HealthAPI\\obj\\",
+        "outputPath": "C:\\Users\\bassagan\\source\\repos\\Health-API\\HealthAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -43,6 +43,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[7.0.3, )"

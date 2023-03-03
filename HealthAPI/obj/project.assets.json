@@ -179,6 +179,18 @@
           "build/net6.0/Microsoft.EntityFrameworkCore.Design.props": {}
         }
       },
+      "Microsoft.EntityFrameworkCore.InMemory/7.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "7.0.3"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.EntityFrameworkCore.InMemory.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.EntityFrameworkCore.InMemory.dll": {}
+        }
+      },
       "Microsoft.EntityFrameworkCore.Relational/7.0.3": {
         "type": "package",
         "dependencies": {
@@ -1311,6 +1323,20 @@
         "lib/net6.0/Microsoft.EntityFrameworkCore.Design.xml",
         "microsoft.entityframeworkcore.design.7.0.3.nupkg.sha512",
         "microsoft.entityframeworkcore.design.nuspec"
+      ]
+    },
+    "Microsoft.EntityFrameworkCore.InMemory/7.0.3": {
+      "sha512": "II0TxiTXwUaHYcn4qlC+GgcrkZaZdjgfHEIfWkPJe84YOVBNshdfBEkeGnVT+n70RKOj+1NyplGo9h22jVGSWA==",
+      "type": "package",
+      "path": "microsoft.entityframeworkcore.inmemory/7.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "lib/net6.0/Microsoft.EntityFrameworkCore.InMemory.dll",
+        "lib/net6.0/Microsoft.EntityFrameworkCore.InMemory.xml",
+        "microsoft.entityframeworkcore.inmemory.7.0.3.nupkg.sha512",
+        "microsoft.entityframeworkcore.inmemory.nuspec"
       ]
     },
     "Microsoft.EntityFrameworkCore.Relational/7.0.3": {
@@ -3791,6 +3817,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Microsoft.EntityFrameworkCore.InMemory >= 7.0.3",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.3",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.3",
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.14.0",
@@ -3804,11 +3831,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bassagan\\source\\repos\\HealthAPI\\HealthAPI\\HealthAPI.csproj",
+      "projectUniqueName": "C:\\Users\\bassagan\\source\\repos\\Health-API\\HealthAPI\\HealthAPI.csproj",
       "projectName": "HealthAPI",
-      "projectPath": "C:\\Users\\bassagan\\source\\repos\\HealthAPI\\HealthAPI\\HealthAPI.csproj",
+      "projectPath": "C:\\Users\\bassagan\\source\\repos\\Health-API\\HealthAPI\\HealthAPI.csproj",
       "packagesPath": "C:\\Users\\bassagan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bassagan\\source\\repos\\HealthAPI\\HealthAPI\\obj\\",
+      "outputPath": "C:\\Users\\bassagan\\source\\repos\\Health-API\\HealthAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -3840,6 +3867,10 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "Microsoft.EntityFrameworkCore.InMemory": {
+            "target": "Package",
+            "version": "[7.0.3, )"
+          },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
             "version": "[7.0.3, )"

@@ -48,13 +48,16 @@ namespace HealthAPI.Controllers
         [HttpGet("Appointments/{id}")]
         public async Task<ActionResult<Appointment>> GetAppointment(int id)
         {
-            var appointment = await _appointmentService.GetAppointmentAsync(id);
+            var appointment = new Appointment(); 
 
-            if (appointment == null)
+            try
             {
-                return NotFound();
+                appointment = await _appointmentService.GetAppointmentAsync(id);
             }
-
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { error = "Avengers found a Dragon fly!" });
+            }
             return appointment;
         }
 

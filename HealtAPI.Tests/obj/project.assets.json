@@ -2446,6 +2446,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "Microsoft.EntityFrameworkCore.InMemory": "7.0.3",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.3",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.14.0",
           "Swashbuckle.AspNetCore": "6.5.0"
@@ -8707,11 +8708,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bassagan\\source\\repos\\HealthAPI\\HealtAPI.Tests\\HealthAPI.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\bassagan\\source\\repos\\Health-API\\HealtAPI.Tests\\HealthAPI.Tests.csproj",
       "projectName": "HealthAPI.Tests",
-      "projectPath": "C:\\Users\\bassagan\\source\\repos\\HealthAPI\\HealtAPI.Tests\\HealthAPI.Tests.csproj",
+      "projectPath": "C:\\Users\\bassagan\\source\\repos\\Health-API\\HealtAPI.Tests\\HealthAPI.Tests.csproj",
       "packagesPath": "C:\\Users\\bassagan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bassagan\\source\\repos\\HealthAPI\\HealtAPI.Tests\\obj\\",
+      "outputPath": "C:\\Users\\bassagan\\source\\repos\\Health-API\\HealtAPI.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -8731,8 +8732,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\bassagan\\source\\repos\\HealthAPI\\HealthAPI\\HealthAPI.csproj": {
-              "projectPath": "C:\\Users\\bassagan\\source\\repos\\HealthAPI\\HealthAPI\\HealthAPI.csproj"
+            "C:\\Users\\bassagan\\source\\repos\\Health-API\\HealthAPI\\HealthAPI.csproj": {
+              "projectPath": "C:\\Users\\bassagan\\source\\repos\\Health-API\\HealthAPI\\HealthAPI.csproj"
             }
           }
         }

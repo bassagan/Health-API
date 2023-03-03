@@ -47,7 +47,7 @@ namespace HealthAPI.Services
                 }
                 else
                 {
-                    throw new HealthException("You found a Ladybug!");
+                    throw new HealthException("Wakanda you found a Ladybug!");
                 }
             }
 

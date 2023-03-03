@@ -60,9 +60,15 @@ namespace HealthAPI.Services
 
         public async Task<Doctor> AddDoctorAsync(Doctor doctor)
         {
-
-            _context.Doctors.Add(doctor);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Doctors.Add(doctor);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
 
             return doctor;
         }
